@@ -34,9 +34,9 @@ I think I am making some mistake in formulation of problem before determining th
 ## Neural Networks
 This was a big improvement on simple models. I experimented with number of layers and optimizers. To summarize, 2 dense layers worked very well. I avoided adding more layers to eliminate overfitting. I tried SGD and Adam optimizers, among which Adam seemed to be working better.
 
-# Summary
+* Summary
 ![Summary](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Neural%20Model.png)
-# Training
+* Training
 ![Training](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Neural%20Training.png)
-# Forecast
+* Forecast
 ![Forecast](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Neural%20Forecast.png)
