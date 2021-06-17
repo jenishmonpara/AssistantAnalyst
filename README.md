@@ -5,7 +5,7 @@ This project seeks to utilize Feed Forward Neural Networks, Long-Short Term Memo
 - [Contents](#contents)
 - [Overview](#overview)
 - [Data Used](#data-used)
-- [Feature Engineering](#feature-engineering)
+- [Simple Models](#simple-models)
 - [Stacked Autoencoder](#stacked-autoencoder)
 - [Neural Network Model](#neural-network-model)
 - [Results](#results)
@@ -24,3 +24,19 @@ I have used Keras to build a LSTM to predict stock prices using historical closi
 I have used Yahoo Finances api with the help of pandas-datareader to get up to date data on tickers. The DataReader function call returns a dataframe object of following type : 
 
 ![Data format](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Dataset%20head.png)
+
+
+## Simple Models
+Initally I tried linear regressor and it did not do very well. However if you try multi-variate linear regression by including the effects of "Volume" for each day, it will give you better results. 
+SVM regressor with rbf kernel performed very bad both, with and without volumes. I tried many optimal and suboptimal parameter (C,gamma) tuning after grid search but it still was not able to perform well. 
+I think I am making some mistake in formulation of problem before determining the input feature shape and I am working on it to correct this.
+
+## Neural Networks
+This was a big improvement on simple models. I experimented with number of layers and optimizers. To summarize, 2 dense layers worked very well. I avoided adding more layers to eliminate overfitting. I tried SGD and Adam optimizers, among which Adam seemed to be working better.
+
+# Summary
+![Summary](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Neural%20Model.png)
+# Training
+![Training](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Neural%20Training.png)
+# Forecast
+![Forecast](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Neural%20Forecast.png)
