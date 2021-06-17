@@ -17,7 +17,7 @@ from keras.models import Sequential
 from keras.layers import Dense, LSTM
 from keras.optimizers import SGD
 import matplotlib.pyplot as plt
-plt.style.use('fivethirtyeight')
+plt.rcParams["figure.figsize"] = (20,10)
 
 stock = "INFY"
 start_date = "2012-01-01"
