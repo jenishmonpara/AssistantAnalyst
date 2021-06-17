@@ -6,9 +6,8 @@ This project seeks to utilize Feed Forward Neural Networks, Long-Short Term Memo
 - [Overview](#overview)
 - [Data Used](#data-used)
 - [Simple Models](#simple-models)
-- [Stacked Autoencoder](#stacked-autoencoder)
 - [Neural Network Model](#neural-network-model)
-- [Results](#results)
+- [LSTM](#lstm)
 - [What next?](#what-next?)
 
 ## Overview
@@ -31,7 +30,7 @@ Initally I tried linear regressor and it did not do very well. However if you tr
 SVM regressor with rbf kernel performed very bad both, with and without volumes. I tried many optimal and suboptimal parameter (C,gamma) tuning after grid search but it still was not able to perform well. 
 I think I am making some mistake in formulation of problem before determining the input feature shape and I am working on it to correct this.
 
-## Neural Networks
+## Neural Network Model
 This was a big improvement on simple models. I experimented with number of layers and optimizers. To summarize, 2 dense layers worked very well. I avoided adding more layers to eliminate overfitting. I tried SGD and Adam optimizers, among which Adam seemed to be working better.
 
 * Summary
@@ -40,3 +39,11 @@ This was a big improvement on simple models. I experimented with number of layer
 ![Training](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Neural%20Training.png)
 * Forecast
 ![Forecast](https://github.com/jenishmonpara/AssistantAnalyst/blob/main/Neural%20Forecast.png)
+
+## LSTM
+I am still working on this part. I want to use LSTM for its memory retaining property.
+
+## What next?
+* Deploying the project.
+* Predicting price as a weighted average of all models. I am considering tuning the weights using reinforcement learning.
+* Incorporating more features such as sentiment analysis.
