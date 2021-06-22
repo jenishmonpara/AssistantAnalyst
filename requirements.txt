@@ -5,3 +5,4 @@ Keras==2.4.3
 streamlit==0.83.0
 pandas==1.2.4
 scikit_learn==0.24.2
+TensorFlow>=2.2
