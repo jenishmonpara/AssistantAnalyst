@@ -20,17 +20,20 @@ st.markdown('''
 
 stock = st.sidebar.selectbox(
     'Select the stock : ',
-     ['INFY','SBIN.NS']
+     ['ASIANPAINT.NS','BAJFINANCE.NS','CDSL.NS',
+      'HCLTECH.NS','HDFC.NS','HINDUNILVR.NS','INFY.NS','ITC.NS','RELIANCE.NS',
+      'TATAMOTORS.NS','TATASTEEL.NS','TITAN.NS','TCS.NS']
 )
 
-start_date = st.sidebar.date_input('Enter starting point of data',min_value = date(2000,9,9))
+start_date = st.sidebar.date_input('Enter starting point of data',min_value = date(2000,9,9),value = date(2010,9,9))
 end_date = date.today()
 today = date.today()
 lookback = st.sidebar.slider('Lookback : ',min_value = 1,max_value = 100,step = 1)
-usdXinr = web.DataReader("INR=X", 'yahoo').iloc[-1]['Close']
+# usdXinr = web.DataReader("INR=X", 'yahoo').iloc[-1]['Close']
 
 
-df = web.DataReader(stock,data_source = "yahoo" , start = start_date,end = end_date)
+# df = web.DataReader(stock,data_source = "yahoo" , start = start_date,end = end_date)
+df = web.data.get_data_yahoo(stock,start_date,end_date)
 
 fig = go.Figure(data = [go.Candlestick(
     x = df.reset_index()['Date'],
@@ -100,7 +103,7 @@ trueytrain = scaler.inverse_transform(trainy)
 dataset = scaler.inverse_transform(dataset)
 trainScore = math.sqrt(mean_squared_error(trueytrain , trainpredict))
 
-print('Training RSME score : ',trainScore * usdXinr," rupees")
+print('Training RSME score : ',trainScore," rupees")
 
 #predicting tomorrow's price
 
@@ -113,4 +116,4 @@ x = np.array(x)
 trainpredict = scaler.inverse_transform(model.predict(x))
 
 leave_lines(5)
-st.success('Tomorrow\'s Price :  ' + str(trainpredict[0][0]*usdXinr) + '  rupees')
+st.success('Tomorrow\'s Price :  ' + str(trainpredict[0][0]) + '  rupees')
