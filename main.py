@@ -28,7 +28,7 @@ stock = st.sidebar.selectbox(
 start_date = st.sidebar.date_input('Enter starting point of data',min_value = date(2000,9,9),value = date(2010,9,9))
 end_date = date.today()
 today = date.today()
-lookback = st.sidebar.slider('Lookback : ',min_value = 1,max_value = 100,step = 1)
+lookback = st.sidebar.slider('Lookback : ',min_value = 1,value = 30,max_value = 100,step = 1)
 # usdXinr = web.DataReader("INR=X", 'yahoo').iloc[-1]['Close']
 
 
