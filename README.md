@@ -47,7 +47,7 @@ This was a big improvement on simple models. I experimented with number of layer
 I am still working on this part. I want to use LSTM for its memory retaining property.
 
 ## What next?
-* Deploying the project.
+* Applying multi-variate time series forecasting with other variables being - GDP, inflation rate, interest rate, oil price in the country where exchange is based as well as in USA.
 * Predicting price as a weighted average of all models. I am considering tuning the weights using reinforcement learning.
 * Incorporating more features such as sentiment analysis.
 
