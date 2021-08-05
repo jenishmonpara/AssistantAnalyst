@@ -1,5 +1,5 @@
 import math
-import pandas_datareader as web
+# import pandas_datareader as web
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
@@ -9,6 +9,7 @@ from keras.layers import Dense
 from datetime import date
 import plotly.graph_objs as go
 import streamlit as st
+import yfinance as yf
 
 def leave_lines(x):
     for i in range(0,x):
@@ -32,8 +33,10 @@ lookback = st.sidebar.slider('Lookback : ',min_value = 1,value = 30,max_value = 
 # usdXinr = web.DataReader("INR=X", 'yahoo').iloc[-1]['Close']
 
 
-# df = web.DataReader(stock,data_source = "yahoo" , start = start_date,end = end_date)
-df = web.data.get_data_yahoo(stock,start_date,end_date)
+# df = web.DataReader(stock,data_source = "quandl" , start = start_date,end = end_date)
+# df = web.data.get_data_yahoo(stock,start_date,end_date)
+df = yf.download(stock, start=start_date, end=end_date)
+
 
 fig = go.Figure(data = [go.Candlestick(
     x = df.reset_index()['Date'],
@@ -107,7 +110,8 @@ print('Training RSME score : ',trainScore," rupees")
 
 #predicting tomorrow's price
 
-df = web.DataReader(stock,data_source = "yahoo" , start = start_date,end = today)[['Close']]
+# df = web.DataReader(stock,data_source = "yahoo" , start = start_date,end = today)[['Close']]
+df = yf.download(stock, start=start_date, end=today)[['Close']]
 
 x = []
 x.append(scaler.fit_transform(df.values)[-lookback:,0])
