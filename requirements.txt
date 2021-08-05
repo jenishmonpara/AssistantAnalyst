@@ -5,3 +5,4 @@ pandas==1.2.4
 streamlit==0.83.0
 yfinance==0.1.63
 scikit_learn==0.24.2
+TensorFlow-cpu>=2.2
