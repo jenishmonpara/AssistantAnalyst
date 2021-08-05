@@ -11,7 +11,7 @@ This project seeks to utilize Feed Forward Neural Networks, Long-Short Term Memo
 - [Neural Network Model](#neural-network-model)
 - [LSTM](#lstm)
 - [What next?](#what-next?)
-- [Common bugs](#Common bugs)
+- [Common bugs](#Common-bugs)
 
 ## Overview
 Investment firms, hedge funds and even individuals have been using financial models to better understand market behavior and make profitable investments and trades. A wealth of information is available in the form of historical stock prices and company performance data, suitable for machine learning algorithms to process.
