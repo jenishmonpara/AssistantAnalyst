@@ -11,6 +11,7 @@ This project seeks to utilize Feed Forward Neural Networks, Long-Short Term Memo
 - [Neural Network Model](#neural-network-model)
 - [LSTM](#lstm)
 - [What next?](#what-next?)
+- [Common bugs](#Common bugs)
 
 ## Overview
 Investment firms, hedge funds and even individuals have been using financial models to better understand market behavior and make profitable investments and trades. A wealth of information is available in the form of historical stock prices and company performance data, suitable for machine learning algorithms to process.
@@ -49,3 +50,10 @@ I am still working on this part. I want to use LSTM for its memory retaining pro
 * Deploying the project.
 * Predicting price as a weighted average of all models. I am considering tuning the weights using reinforcement learning.
 * Incorporating more features such as sentiment analysis.
+
+
+## Common bugs
+* Somewhere in mid-July 2021 yahoo finance withdrew its financial data service streaming, to overcome it try yfinance library. However note that yfinance is not a supported source in pandas-datareader
+* To generate requirements.txt, use "pipreqs ./" in local terminal. Incase it already exists, update it using "pipreqs ./ --force"
+* If you are hosting your app on Heroku free hosting service, replace "tensorflow" with "tensorflow-cpu" inside the requirements.txt or else, Heroku will throw an error "compiled slug size : file size too large (max 500 M)".
+* Happy Debugging :P
