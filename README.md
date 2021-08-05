@@ -1,5 +1,5 @@
 # AssistantAnalyst :chart::money_with_wings::chart_with_downwards_trend::chart_with_upwards_trend:
-[Web App](https://assistantanalyst.herokuapp.com)
+[Web App](https://assistantanalyst.herokuapp.com) :earth_asia:	:rocket:
 
 This project seeks to utilize Feed Forward Neural Networks, Long-Short Term Memory (LSTM) Neural Network algorithm, to predict stock prices.
 
