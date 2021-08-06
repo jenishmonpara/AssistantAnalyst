@@ -1,5 +1,4 @@
 import math
-# import pandas_datareader as web
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
@@ -15,9 +14,7 @@ def leave_lines(x):
     for i in range(0,x):
         st.write('.')
 
-st.markdown(''' 
-# Assistant Analyst :sunglasses: <br>
-''',True)   #true is passesd so that <breakline> works
+st.markdown(''' # Assistant Analyst :chart::money_with_wings::chart_with_downwards_trend::chart_with_upwards_trend: <br>''',True)   #true is passesd so that <breakline> works
 
 stock = st.sidebar.selectbox(
     'Select the stock : ',
@@ -26,14 +23,12 @@ stock = st.sidebar.selectbox(
       'TATAMOTORS.NS','TATASTEEL.NS','TITAN.NS','TCS.NS']
 )
 
-start_date = st.sidebar.date_input('Enter starting point of data',min_value = date(2000,9,9),value = date(2010,9,9))
+start_date = st.sidebar.date_input('Enter starting point of data',min_value = date(2000,9,9),value = date(2015,9,9))
 end_date = date.today()
 today = date.today()
 lookback = st.sidebar.slider('Lookback : ',min_value = 1,value = 30,max_value = 100,step = 1)
+
 # usdXinr = web.DataReader("INR=X", 'yahoo').iloc[-1]['Close']
-
-
-# df = web.DataReader(stock,data_source = "quandl" , start = start_date,end = end_date)
 # df = web.data.get_data_yahoo(stock,start_date,end_date)
 df = yf.download(stock, start=start_date, end=end_date)
 
@@ -59,25 +54,23 @@ st.line_chart(df['Volume'])
 
 df = df[['Close']]
 
+
 dataset = df.values
 dataset = dataset.astype('float64')
 scaler = MinMaxScaler(feature_range = (0,1));
 dataset = scaler.fit_transform(dataset)
 
-train_size = (int)(1.0*len(dataset))
-train , test = dataset[:train_size,:] , dataset[train_size - lookback:,:]
-
 def to_sequences(dataset,lookback = 15):
     x = []
     y = []
-    for i in range(0,len(dataset) - lookback - 1) :
+    for i in range(0,len(dataset) - lookback) :
         window = dataset[i:i + lookback,0]
         x.append(window)
         y.append(dataset[i + lookback,:])
     return np.array(x) , np.array(y)
 
-trainx,trainy = to_sequences(train,lookback)
-testx,testy = to_sequences(test,lookback)
+trainx,trainy = to_sequences(dataset,lookback)
+print(trainx.shape)
 print(trainy.shape)
 
 # building the model
@@ -90,15 +83,13 @@ model.add(Dense(1))
 
 #opt = SGD(learning_rate = 0.1, momentum = 0.9)
 
-model.compile(loss = 'mean_squared_error' , optimizer = 'adam' , metrics = ['acc'])  # try stochastic decend also
+model.compile(loss = 'mean_squared_error' , optimizer = 'adam')
 
 print(model.summary())
 
 
 # history = model.fit(trainx,trainy,validation_data = (testx,testy) , verbose = 1,epochs = 50)
-history = model.fit(trainx,trainy , verbose = 1,epochs = 50)
-
-
+history = model.fit(trainx,trainy , verbose = 2,epochs = 50)
 
 
 trainpredict = scaler.inverse_transform(model.predict(trainx))
@@ -106,7 +97,6 @@ trueytrain = scaler.inverse_transform(trainy)
 dataset = scaler.inverse_transform(dataset)
 trainScore = math.sqrt(mean_squared_error(trueytrain , trainpredict))
 
-print('Training RSME score : ',trainScore," rupees")
 
 #predicting tomorrow's price
 
@@ -120,4 +110,9 @@ x = np.array(x)
 trainpredict = scaler.inverse_transform(model.predict(x))
 
 leave_lines(5)
+st.write('Training Error (RMSE relative to stock price):  ' + str(100.0*trainScore/df.iloc[-1]['Close']) + ' %\n')
+leave_lines(2)
 st.success('Tomorrow\'s Price :  ' + str(trainpredict[0][0]) + '  rupees')
+
+print(trainScore)
+print(trainpredict[0][0])
