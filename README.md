@@ -57,3 +57,7 @@ I am still working on this part. I want to use LSTM for its memory retaining pro
 * To generate requirements.txt, use "pipreqs ./" in local terminal. Incase it already exists, update it using "pipreqs ./ --force"
 * If you are hosting your app on Heroku free hosting service, replace "tensorflow" with "tensorflow-cpu" inside the requirements.txt or else, Heroku will throw an error "compiled slug size : file size too large (max 500 M)".
 * Happy Debugging :P
+
+
+## Take aways
+I worked on a Neural Network based stock price forecasting web-app, in which I made a stock price forecasting web-app and achieved RMSE of 1.1% of the stock price. I Experimented with different configurations, numbers of layers and training epochs of Neural Network used. From this project I gained exposure to Numpy, Pandas, Keras, SKLearn, Yfinance. Came to know about efficient, readable and extendable code writing practices along the way.
